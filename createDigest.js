@@ -48,7 +48,7 @@ const createDigest = async reportID => {
     const report = JSON.parse(reportJSON);
     const query = {};
     const scriptID = report.script.id;
-    const {parameters} = require(`digesters/${scriptID}`);
+    const {parameters} = require(`./digesters/${scriptID}`);
     parameters(report, query);
     const template = await fs.readFile(`digesters/${scriptID}.html`, 'utf8');
     const digest = replaceHolders(template, query);

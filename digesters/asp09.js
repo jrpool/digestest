@@ -12,9 +12,11 @@ exports.parameters = (report, query) => {
   const joiner = '\n      ';
   const innerJoiner = '\n        ';
   // Create an HTML identification of the host report.
-  const {acts, host, hostName, id, orderName} = report;
+  const {id, acts} = report;
+  const host = acts.find(act => act.type === 'url');
+  const hostName = host.what;
   const reportHostInfo = hostName ? `the <code>${hostName}</code> host report in ` : '';
-  const reportInfo = `${reportHostInfo}the <code>${orderName || id}</code> report`;
+  const reportInfo = `${reportHostInfo}the <code>${id}</code> report`;
   // Creates a packaged-test success message.
   const packageSucceedText = package =>
     `<p>The page <strong>passed</strong> the <code>${package}</code> test.</p>`;
@@ -51,11 +53,12 @@ exports.parameters = (report, query) => {
     }
   };
   // Add the job data to the query.
+  query.report = JSON.stringify(report, null, 2);
   query.dateISO = report.endTime.slice(0, 10);
   query.dateSlash = query.dateISO.replace(/-/g, '/');
   query.reportInfo = reportInfo;
   query.scoreProc = __filename.slice(0, -3).replace(/^.+\//, '');
-  query.org = host.what;
+  query.org = hostName;
   query.url = host.which;
   const scoreAct = acts.filter(act => act.type === 'score')[0];
   const {result} = scoreAct;
