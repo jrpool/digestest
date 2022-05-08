@@ -1,0 +1,24 @@
+{
+  "name": "digestest",
+  "version": "1.0.0",
+  "description": "Produces HTML digests and comparative reports from Testaro JSON reports",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jrpool/digestest"
+  },
+  "keywords": ["accessibility", "a11y", "testing"],
+  "author": "Jonathan Pool <jonathan.pool@cvshealth.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jrpool/digestest/-/issues"
+  },
+  "homepage": "https://github.com/jrpool/digestest",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "*"
+  }
+}
