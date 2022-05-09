@@ -15,8 +15,7 @@ exports.parameters = (report, query) => {
   const {id, acts} = report;
   const host = acts.find(act => act.type === 'url');
   const hostName = host.what;
-  const reportHostInfo = hostName ? `the <code>${hostName}</code> host report in ` : '';
-  const reportInfo = `${reportHostInfo}the <code>${id}</code> report`;
+  const reportInfo = `the <code>${id}</code> report`;
   // Creates a packaged-test success message.
   const packageSucceedText = package =>
     `<p>The page <strong>passed</strong> the <code>${package}</code> test.</p>`;
@@ -53,7 +52,7 @@ exports.parameters = (report, query) => {
     }
   };
   // Add the job data to the query.
-  query.report = JSON.stringify(report, null, 2);
+  query.report = htmlEscape(JSON.stringify(report, null, 2));
   query.dateISO = report.endTime.slice(0, 10);
   query.dateSlash = query.dateISO.replace(/-/g, '/');
   query.reportInfo = reportInfo;
